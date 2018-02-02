@@ -184,6 +184,13 @@ public protocol MessagesLayoutDelegate: AnyObject {
     ///
     /// The default value returned by this method is `false`.
     func shouldCacheLayoutAttributes(for message: MessageType) -> Bool
+    
+
+    func widthForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
+    func heightForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
+    
+    func widthForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
+    func heightForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
 
 }
 
@@ -274,4 +281,21 @@ public extension MessagesLayoutDelegate {
     func widthForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return maxWidth
     }
+    
+    
+    // MARK: - Voice Messages Defaults
+    func widthForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 200.0
+    }
+    func heightForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 60.0
+    }
+    
+    func widthForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 200.0
+    }
+    func heightForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 60.0
+    }
+
 }

@@ -51,6 +51,10 @@ public enum MessageData {
 
     /// An emoji message.
     case emoji(String)
+    
+    case voice(file: URL, duration: Float)
+    
+    case call(text: String, duration: Float, onlyAudio: Bool)
 
     // MARK: - Not supported yet
 

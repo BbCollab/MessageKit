@@ -68,6 +68,16 @@ extension MessagesViewController: UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .voice:
+            let cell = messagesCollectionView.dequeueReusableCell(VoiceMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .call:
+            let cell = messagesCollectionView.dequeueReusableCell(CallMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+            
+
         }
     }
 
