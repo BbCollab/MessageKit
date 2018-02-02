@@ -10,4 +10,6 @@ import UIKit
 
 class CallMessageCell: MessageCollectionViewCell {
     open override class func reuseIdentifier() -> String { return "messagekit.cell.call" }
+    
+    open var imageView = UIImageView()
 }
