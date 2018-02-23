@@ -238,6 +238,8 @@ fileprivate extension MessagesCollectionViewFlowLayout {
         attributes.avatarSize = avatarSize(for: attributes)
         attributes.messageContainerPadding = messageContainerPadding(for: attributes)
         attributes.messageLabelInsets = messageLabelInsets(for: attributes)
+        attributes.callLabelInsets = callLabelInsets(for: attributes)
+        attributes.voiceLabelInsets = voiceLabelInsets(for: attributes)
         
         // MessageContainerView
         attributes.messageContainerMaxWidth = messageContainerMaxWidth(for: attributes)
@@ -275,6 +277,8 @@ fileprivate extension MessagesCollectionViewFlowLayout {
         attributes.bottomLabelFrame = intermediateAttributes.bottomLabelFrame
         attributes.avatarFrame = intermediateAttributes.avatarFrame
         attributes.messageLabelInsets = intermediateAttributes.messageLabelInsets
+        attributes.callLabelInsets = intermediateAttributes.callLabelInsets
+        attributes.voiceLabelInsets = intermediateAttributes.voiceLabelInsets
         
         switch intermediateAttributes.message.data {
         case .emoji:
@@ -284,6 +288,10 @@ fileprivate extension MessagesCollectionViewFlowLayout {
         case .attributedText(let text):
             guard let font = text.attribute(.font, at: 0, effectiveRange: nil) as? UIFont else { return }
             attributes.messageLabelFont = font
+        case .call:
+            attributes.messageLabelFont = messageLabelFont
+        case .voice:
+            attributes.messageLabelFont = messageLabelFont
         default:
             break
         }
@@ -390,6 +398,17 @@ private extension MessagesCollectionViewFlowLayout {
         return messagesLayoutDelegate.messageLabelInset(for: attributes.message, at: attributes.indexPath, in: messagesCollectionView)
     }
     
+    func callLabelInsets(for attributes: MessageIntermediateLayoutAttributes) -> UIEdgeInsets {
+        // Maybe check the message type here since insets only apply to text messages
+        return messagesLayoutDelegate.callLabelInset(for: attributes.message, at: attributes.indexPath, in: messagesCollectionView)
+    }
+    
+    func voiceLabelInsets(for attributes: MessageIntermediateLayoutAttributes) -> UIEdgeInsets {
+        // Maybe check the message type here since insets only apply to text messages
+        return messagesLayoutDelegate.voiceLabelInset(for: attributes.message, at: attributes.indexPath, in: messagesCollectionView)
+    }
+
+    
     // F
     
     /// Returns the max available width for the `MessageContainerView`.
@@ -447,11 +466,14 @@ private extension MessagesCollectionViewFlowLayout {
             let width = messagesLayoutDelegate.widthForVoice(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             let height = messagesLayoutDelegate.heightForVoice(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             messageContainerSize = CGSize(width: width, height: height)
-        case .call:
+        case .call(let text, let duration, _):
             print("call")
-            let width = messagesLayoutDelegate.widthForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
-            let height = messagesLayoutDelegate.heightForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
-            messageContainerSize = CGSize(width: width, height: height)
+//            let width = messagesLayoutDelegate.widthForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
+//            let height = messagesLayoutDelegate.heightForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
+//            messageContainerSize = CGSize(width: width, height: height)
+            messageContainerSize = labelSize(for: text + String(duration), considering: maxWidth, and: messageLabelFont)
+            messageContainerSize.width += (attributes.callLabelHorizontalInsets + 30)// icon size: 30, pading: 8, inset: 32
+            messageContainerSize.height += attributes.callLabelVerticalInsets
 
         }
         

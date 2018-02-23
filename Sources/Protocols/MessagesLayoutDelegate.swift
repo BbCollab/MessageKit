@@ -188,10 +188,10 @@ public protocol MessagesLayoutDelegate: AnyObject {
 
     func widthForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
     func heightForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    
-    func widthForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    func heightForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
 
+    func callLabelInset(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets
+    func voiceLabelInset(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets
+    
 }
 
 public extension MessagesLayoutDelegate {
@@ -288,14 +288,31 @@ public extension MessagesLayoutDelegate {
         return 200.0
     }
     func heightForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 60.0
+        return 40.0
     }
     
-    func widthForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 200.0
+    /// Call Messages Defaults
+    func callLabelInset(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
+        guard let dataSource = messagesCollectionView.messagesDataSource else {
+            fatalError(MessageKitError.nilMessagesDataSource)
+        }
+        if dataSource.isFromCurrentSender(message: message) {
+            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 0)
+        } else {
+            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 0)
+        }
     }
-    func heightForCall(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 60.0
+    
+    func voiceLabelInset(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
+        guard let dataSource = messagesCollectionView.messagesDataSource else {
+            fatalError(MessageKitError.nilMessagesDataSource)
+        }
+        if dataSource.isFromCurrentSender(message: message) {
+            return UIEdgeInsets(top: 7, left: 14, bottom: 7, right: 18)
+        } else {
+            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 14)
+        }
     }
+
 
 }

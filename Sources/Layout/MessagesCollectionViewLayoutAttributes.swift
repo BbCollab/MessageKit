@@ -34,6 +34,8 @@ final class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttrib
     var messageLabelFont: UIFont = UIFont.preferredFont(forTextStyle: .body)
     var messageContainerFrame: CGRect = .zero
     var messageLabelInsets: UIEdgeInsets = .zero
+    var callLabelInsets: UIEdgeInsets = .zero
+    var voiceLabelInsets: UIEdgeInsets = .zero
 
     var topLabelFrame: CGRect = .zero
     var bottomLabelFrame: CGRect = .zero
@@ -47,6 +49,8 @@ final class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttrib
         copy.messageContainerFrame = messageContainerFrame
         copy.messageLabelFont = messageLabelFont
         copy.messageLabelInsets = messageLabelInsets
+        copy.callLabelInsets = callLabelInsets
+        copy.voiceLabelInsets = voiceLabelInsets
         copy.topLabelFrame = topLabelFrame
         copy.bottomLabelFrame = bottomLabelFrame
         return copy

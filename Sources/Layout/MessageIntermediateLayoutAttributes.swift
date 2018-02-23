@@ -77,6 +77,8 @@ final class MessageIntermediateLayoutAttributes {
     var messageContainerMaxWidth: CGFloat = 0
     var messageContainerPadding: UIEdgeInsets = .zero
     var messageLabelInsets: UIEdgeInsets = .zero
+    var callLabelInsets: UIEdgeInsets = .zero
+    var voiceLabelInsets: UIEdgeInsets = .zero
     
     lazy var messageContainerFrame: CGRect = {
         
@@ -209,6 +211,22 @@ extension MessageIntermediateLayoutAttributes {
     
     var messageHorizontalPadding: CGFloat {
         return messageContainerPadding.left + messageContainerPadding.right
+    }
+    
+    var callLabelVerticalInsets: CGFloat {
+        return callLabelInsets.top + callLabelInsets.bottom
+    }
+    
+    var callLabelHorizontalInsets: CGFloat {
+        return callLabelInsets.left + callLabelInsets.right
+    }
+    
+    var voiceLabelVerticalInsets: CGFloat {
+        return voiceLabelInsets.top + voiceLabelInsets.bottom
+    }
+    
+    var voiceLabelHorizontalInsets: CGFloat {
+        return voiceLabelInsets.left + voiceLabelInsets.right
     }
 
 }
