@@ -268,7 +268,7 @@ public extension MessagesLayoutDelegate {
 
     func heightForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         switch message.data {
-        case .photo(_, let image), .video(_, let image):
+        case .photo(_, let image, _, _), .video(_, let image):
             guard let image = image else { return 0 }
             let boundingRect = CGRect(origin: .zero, size: CGSize(width: maxWidth, height: .greatestFiniteMagnitude))
             return AVMakeRect(aspectRatio: image.size, insideRect: boundingRect).height

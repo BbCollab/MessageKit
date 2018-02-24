@@ -23,6 +23,7 @@
  */
 
 import UIKit
+import SDWebImage
 
 open class MediaMessageCell: MessageCollectionViewCell {
 
@@ -60,8 +61,9 @@ open class MediaMessageCell: MessageCollectionViewCell {
         }
         
         switch message.data {
-        case .photo(_, let image):
-            imageView.image = image
+        case .photo(let url, let image, _, _):
+//            imageView.image = image
+            imageView.sd_setImage(with: url, placeholderImage: image, options: SDWebImageOptions(rawValue: 0), completed: nil)
             playButtonView.isHidden = true
         case .video(_, let image):
             imageView.image = image

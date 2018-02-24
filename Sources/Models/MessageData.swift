@@ -40,8 +40,8 @@ public enum MessageData {
     /// A message with attributed text.
     case attributedText(NSAttributedString)
 
-    /// A photo message.
-    case photo(url: URL?, image: UIImage?)
+    /// A photo message with estimate width and width
+    case photo(url: URL?, image: UIImage?, width: Float, height: Float)
 
     /// A video message.
     case video(file: URL, thumbnail: UIImage?)
