@@ -10,4 +10,12 @@ import UIKit
 
 class VoiceMessageCell: MessageCollectionViewCell {
     open override class func reuseIdentifier() -> String { return "messagekit.cell.voice" }
+    
+    open lazy var playButtonView: PlayButtonView = {
+        let playButtonView = PlayButtonView()
+        return playButtonView
+    }()
+
+    
+    
 }
