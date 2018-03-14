@@ -41,6 +41,7 @@
 		8962AC9C1F87ABC60030B058 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8962AC7B1F87AB230030B058 /* MockMessage.swift */; };
 		A76485B22024106600429CF5 /* VoiceMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76485B12024106600429CF5 /* VoiceMessageCell.swift */; };
 		A76485B42024108600429CF5 /* CallMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76485B32024108600429CF5 /* CallMessageCell.swift */; };
+		A7F9053E2057F5F0001CA98C /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F9053F2057F5F0001CA98C /* SDWebImage.framework */; };
 		B006FA021F99DE2100509C46 /* MessageIntermediateLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006FA011F99DE2100509C46 /* MessageIntermediateLayoutAttributes.swift */; };
 		B0C8D99B1F73076B000A86E4 /* MessageKitAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B0C8D99A1F73076B000A86E4 /* MessageKitAssets.bundle */; };
 		B7A03F181F86682C006AEF79 /* MessagesCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A03F161F86682C006AEF79 /* MessagesCollectionViewFlowLayout.swift */; };
@@ -147,6 +148,7 @@
 		8962AC891F87AB230030B058 /* MessageDateHeaderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDateHeaderViewTests.swift; sourceTree = "<group>"; };
 		A76485B12024106600429CF5 /* VoiceMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageCell.swift; sourceTree = "<group>"; };
 		A76485B32024108600429CF5 /* CallMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMessageCell.swift; sourceTree = "<group>"; };
+		A7F9053F2057F5F0001CA98C /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B006FA011F99DE2100509C46 /* MessageIntermediateLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageIntermediateLayoutAttributes.swift; sourceTree = "<group>"; };
 		B0C8D99A1F73076B000A86E4 /* MessageKitAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MessageKitAssets.bundle; sourceTree = "<group>"; };
 		B7A03F161F86682C006AEF79 /* MessagesCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F9053E2057F5F0001CA98C /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +221,7 @@
 		1F7FC8C21FD26F22006CC979 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7F9053F2057F5F0001CA98C /* SDWebImage.framework */,
 				1F7FC8C71FD26F49006CC979 /* Nimble.framework */,
 				1F7FC8C51FD26F33006CC979 /* Quick.framework */,
 				1F7FC8C31FD26F22006CC979 /* Carthage */,
