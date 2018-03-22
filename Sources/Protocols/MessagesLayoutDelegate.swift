@@ -298,9 +298,9 @@ public extension MessagesLayoutDelegate {
             fatalError(MessageKitError.nilMessagesDataSource)
         }
         if dataSource.isFromCurrentSender(message: message) {
-            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 0)
+            return UIEdgeInsets(top: 7, left: 14, bottom: 7, right: 18)
         } else {
-            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 0)
+            return UIEdgeInsets(top: 7, left: 18, bottom: 7, right: 14)
         }
     }
     

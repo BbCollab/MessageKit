@@ -467,15 +467,10 @@ private extension MessagesCollectionViewFlowLayout {
             let width = messagesLayoutDelegate.widthForVoice(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             let height = messagesLayoutDelegate.heightForVoice(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
             messageContainerSize = CGSize(width: width, height: height)
-        case .call(let text, let duration, _):
-            print("call")
-//            let width = messagesLayoutDelegate.widthForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
-//            let height = messagesLayoutDelegate.heightForCall(message: message, at: indexPath, with: maxWidth, in: messagesCollectionView)
-//            messageContainerSize = CGSize(width: width, height: height)
-            messageContainerSize = labelSize(for: text + String(duration), considering: maxWidth, and: messageLabelFont)
-            messageContainerSize.width += (attributes.callLabelHorizontalInsets + 30)// icon size: 30, pading: 8, inset: 32
+        case .call(let text, _ , _):
+            messageContainerSize = labelSize(for: text , considering: maxWidth, and: messageLabelFont)
+            messageContainerSize.width += (attributes.callLabelHorizontalInsets)
             messageContainerSize.height += attributes.callLabelVerticalInsets
-
         }
         
         return messageContainerSize
