@@ -286,7 +286,7 @@ public extension MessagesLayoutDelegate {
     
     // MARK: - Voice Messages Defaults
     func widthForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 200.0
+        return 120.0
     }
     func heightForVoice(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return 40.0
