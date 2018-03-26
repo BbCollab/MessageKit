@@ -11,10 +11,11 @@ import UIKit
 class CallMessageCell: MessageCollectionViewCell {
     open override class func reuseIdentifier() -> String { return "messagekit.cell.call" }
     
-//    open var callView: UIImageView = {
-//        let view = UIImageView()
-//        return view
-//    }()
+    open var icon: UIImageView = {
+        let view = UIImageView()
+        return view
+    }()
+
     open var messageLabel: MessageLabel = {
         let view = MessageLabel()
         return view
@@ -22,8 +23,14 @@ class CallMessageCell: MessageCollectionViewCell {
     
     open override func setupSubviews() {
         super.setupSubviews()
-//        messageContainerView.addSubview(callView)
+        messageContainerView.addSubview(icon)
         messageContainerView.addSubview(messageLabel)
+    }
+
+    func setupConstraint() {
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
@@ -40,20 +47,15 @@ class CallMessageCell: MessageCollectionViewCell {
         guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
             fatalError(MessageKitError.nilMessagesDisplayDelegate)
         }
-        
-        let textColor = displayDelegate.textColor(for: message, at: indexPath, in: messagesCollectionView)
+
+        messageLabel.textColor = displayDelegate.textColor(for: message, at: indexPath, in: messagesCollectionView)
         switch message.data {
         case .call(let text , _ , _)://let onlyAudio
             messageLabel.text = text
         default:
             break
         }
-        messageLabel.textColor = textColor
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        messageLabel.text = nil
-    }
+
 
 }

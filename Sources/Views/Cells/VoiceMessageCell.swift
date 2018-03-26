@@ -73,5 +73,4 @@ class VoiceMessageCell: MessageCollectionViewCell {
         
 //        displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
-    
 }
