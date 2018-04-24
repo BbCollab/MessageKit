@@ -6,10 +6,15 @@ The changelog for `MessageKit`. Also see the [releases](https://github.com/Messa
 
 ## Upcoming release
 
+## [[Prerelease] 0.13.4](https://github.com/MessageKit/MessageKit/releases/tag/0.13.4)
+
 ### Fixed
 
 - Fixed `bubbleTailOutline` invalidation of message bubble.
 [#633](https://github.com/MessageKit/MessageKit/pull/633) by [@zhongwuzw](https://github.com/zhongwuzw).
+
+- Fixed `boundingRect(with:options:attributes:context)` wrong size calculation when use some font, e.g. custom font.
+[#645](https://github.com/MessageKit/MessageKit/pull/645) by [@zhongwuzw](https://github.com/zhongwuzw).
 
 ## [[Prerelease] 0.13.3](https://github.com/MessageKit/MessageKit/releases/tag/0.13.3)
 
