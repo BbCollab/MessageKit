@@ -23,46 +23,45 @@
  */
 
 import Foundation
-import class CoreLocation.CLLocation
 
-/// An enum representing the kind of message and its underlying data.
-public enum MessageData {
+/// An enum representing the kind of message and its underlying kind.
+public enum MessageKind {
 
     /// A standard text message.
     ///
-    /// NOTE: The font used for this message will be the value of the
+    /// - Note: The font used for this message will be the value of the
     /// `messageLabelFont` property in the `MessagesCollectionViewFlowLayout` object.
     ///
-    /// Tip: Using `MessageData.attributedText(NSAttributedString)` doesn't require you
+    /// Using `MessageKind.attributedText(NSAttributedString)` doesn't require you
     /// to set this property and results in higher performance.
     case text(String)
     
     /// A message with attributed text.
     case attributedText(NSAttributedString)
 
-    /// A photo message with estimate width and width
-    case photo(url: URL?, image: UIImage?, width: Float, height: Float)
+    /// A photo message.
+    case photo(MediaItem)
 
     /// A video message.
-    case video(file: URL, thumbnail: UIImage?)
+    case video(MediaItem)
 
     /// A location message.
-    case location(CLLocation)
+    case location(LocationItem)
 
     /// An emoji message.
     case emoji(String)
-    
-    case voice(file: String, duration: TimeInterval)
-    
-    case call(text: String, duration: Float, onlyAudio: Bool)
+
+    /// A custom message.
+    /// - Note: Using this case requires that you override the following methods and handle this case:
+    ///   - `collectionView(_:cellForItemAt indexPath: IndexPath) -> UICollectionViewCell`
+    ///   - `cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator`
+    case custom(Any?)
 
     // MARK: - Not supported yet
 
 //    case audio(Data)
 //
 //    case system(String)
-//    
-//    case custom(Any)
 //    
 //    case placeholder
 

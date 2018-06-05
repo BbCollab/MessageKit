@@ -23,23 +23,26 @@
  */
 
 import UIKit
-import SDWebImage
 
-open class MediaMessageCell: MessageCollectionViewCell {
+/// A subclass of `MessageContentCell` used to display video and audio messages.
+open class MediaMessageCell: MessageContentCell {
 
-    open override class func reuseIdentifier() -> String { return "messagekit.cell.mediamessage" }
-
-    // MARK: - Properties
-
+    /// The play button view to display on video messages.
     open lazy var playButtonView: PlayButtonView = {
         let playButtonView = PlayButtonView()
         return playButtonView
     }()
 
-    open var imageView = UIImageView()
+    /// The image view display the media content.
+    open var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
 
     // MARK: - Methods
 
+    /// Responsible for setting up the constraints of the cell's subviews.
     open func setupConstraints() {
         imageView.fillSuperview()
         playButtonView.centerInSuperview()
@@ -55,22 +58,22 @@ open class MediaMessageCell: MessageCollectionViewCell {
 
     open override func configure(with message: MessageType, at indexPath: IndexPath, and messagesCollectionView: MessagesCollectionView) {
         super.configure(with: message, at: indexPath, and: messagesCollectionView)
-        
+
         guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
             fatalError(MessageKitError.nilMessagesDisplayDelegate)
         }
-        
-        switch message.data {
-        case .photo(let url, let image, _, _):
-            imageView.sd_setImage(with: url, placeholderImage: image, options: SDWebImageOptions(rawValue: 0), completed: nil)
+
+        switch message.kind {
+        case .photo(let mediaItem):
+            imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = true
-        case .video(_, let image):
-            imageView.image = image
+        case .video(let mediaItem):
+            imageView.image = mediaItem.image ?? mediaItem.placeholderImage
             playButtonView.isHidden = false
         default:
             break
         }
-        
+
         displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
     }
 }
