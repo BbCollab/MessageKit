@@ -23,13 +23,21 @@ class ParentVC: UIViewController {
 
 **How can I remove the `AvatarView` from the cell?**
 
-If you return `CGSize.zero` from the `MessagesLayoutDelegate` method
-`avatarSize(for:MessageType,at:IndexPath,in:MessagesCollectionView)`, the `AvatarView`
-will not be visible for that cell.
+You can set the `AvatarView` to hidden through the `configureAvatarView(_:AvatarView,for:MessageType,at:IndexPath,in:MessagesCollectionView)` method of `MessagesDisplayDelegate`.
 
 ```Swift
-func avatarSize(for: MessageType, at: IndexPath, in: MessagesCollectionView) -> CGSize {
-    return .zero
+func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+  avatarView.isHidden = true
+}
+```
+
+If you also like to remove the space the `AvatarView` occupies you have to change the properties
+`outgoingAvatarSize` or `incomingAvatarSize` of the `CellSizeCalculator` object for the respective message to `CGSize.zero`.
+
+```Swift
+if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+  layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
+  layout.textMessageSizeCalculator.incomingAvatarSize = .zero
 }
 ```
 
