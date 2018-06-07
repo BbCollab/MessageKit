@@ -76,12 +76,8 @@ struct MockMessage: MessageType {
     }
 
     init(image: UIImage, sender: Sender, messageId: String) {
-<<<<<<< HEAD
-        self.init(data: .photo(url: nil, image: image, width: 100, height: 100), sender: sender, messageId: messageId)
-=======
         let mediaItem = MockMediaItem(image: image)
         self.init(kind: .photo(mediaItem), sender: sender, messageId: messageId)
->>>>>>> origin/master
     }
 
     init(thumbnail: UIImage, sender: Sender, messageId: String) {
