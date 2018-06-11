@@ -130,6 +130,8 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     lazy open var photoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var videoMessageSizeCalculator = MediaMessageSizeCalculator(layout: self)
     lazy open var locationMessageSizeCalculator = LocationMessageSizeCalculator(layout: self)
+    lazy open var audioMessageSizeCalculator = AudioMessageSizeCalculator(layout: self)
+    lazy open var callMessageSizeCalculator = CallMessageSizeCalculator(layout: self)
 
     open func cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator {
         let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
@@ -148,6 +150,10 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return locationMessageSizeCalculator
         case .custom:
             fatalError("Must return a CellSizeCalculator for MessageKind.custom(Any?)")
+        case .audio:
+            return audioMessageSizeCalculator
+        case .call:
+            return callMessageSizeCalculator
         }
     }
 

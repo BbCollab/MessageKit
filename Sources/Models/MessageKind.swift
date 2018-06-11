@@ -59,7 +59,10 @@ public enum MessageKind {
 
     // MARK: - Not supported yet
 
-//    case audio(Data)
+    case audio(String)
+    
+    //video call or audio call
+    case call(Bool, String)
 //
 //    case system(String)
 //    

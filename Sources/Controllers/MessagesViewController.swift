@@ -179,6 +179,14 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             return cell
         case .custom:
             fatalError(MessageKitError.customDataUnresolvedCell)
+        case .audio:
+            let cell = messagesCollectionView.dequeueReusableCell(AudioMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
+        case .call:
+            let cell = messagesCollectionView.dequeueReusableCell(CallMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         }
     }
 
